@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 class Person{
     private String firstname;
@@ -65,6 +68,12 @@ class Vote{
     }
 }
 class Voting{
-    
+    private int type;
+    private String question;
+    private HashMap<String, HashSet<Vote>> choices;
+    private boolean isAnonymous;
+    private ArrayList<Person> voters;
+
+
 }
 
