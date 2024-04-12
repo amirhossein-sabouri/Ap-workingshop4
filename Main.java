@@ -64,4 +64,7 @@ class Vote{
 
     }
 }
+class Voting{
+    
+}
 
