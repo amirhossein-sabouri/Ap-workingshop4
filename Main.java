@@ -74,6 +74,14 @@ class Voting{
     private boolean isAnonymous;
     private ArrayList<Person> voters;
 
+    public Voting(int type, String question, HashMap<String, HashSet<Vote>> choices, boolean isAnonymous, ArrayList<Person> voters) {
+        this.type = type;
+        this.question = question;
+        this.choices = choices;
+        this.isAnonymous = isAnonymous;
+        this.voters = voters;
+    }
+
     public int getType() {
         return type;
     }
