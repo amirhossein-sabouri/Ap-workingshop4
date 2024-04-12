@@ -67,7 +67,7 @@ class Vote{
 
     }
 }
-class Voting{
+class Voting {
     private int type;
     private String question;
     private HashMap<String, HashSet<Vote>> choices;
@@ -98,9 +98,6 @@ class Voting{
         this.question = question;
     }
 
-    public HashMap<String, HashSet<Vote>> getChoices() {
-        return choices;
-    }
 
     public void setChoices(HashMap<String, HashSet<Vote>> choices) {
         this.choices = choices;
@@ -120,6 +117,35 @@ class Voting{
 
     public void setVoters(ArrayList<Person> voters) {
         this.voters = voters;
+    }
+
+    public ArrayList<String> getChoices() {
+        ArrayList<String> temp = new ArrayList<>();
+        for (String i : choices.keySet()) {
+            temp.add(i);
+        }
+        return temp;
+    }
+
+    public void createChoice(String choice) {
+        HashSet<Vote> votes = new HashSet<>();
+        choices.put(choice, votes);
+    }
+
+    public void vote(Person voter, ArrayList<String> voter_choices) {
+        String date = "2024/4/2";
+        voters.add(voter);
+        Vote vote = new Vote(voter, date);
+        for (String i : voter_choices) {
+            for (String j : choices.keySet()) {
+                if (i.equals(j)) {
+                        choices.get(j).add(vote);
+                }
+            }
+
+
+        }
+
     }
 }
 
