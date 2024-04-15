@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+import java.time.LocalTime;
+import java.text.SimpleDateFormat;
 
 class Person{
     private String firstname;
@@ -81,6 +81,12 @@ class Voting {
         this.isAnonymous = isAnonymous;
         this.voters = voters;
     }
+    Date currentDate = new Date();
+    // Create a date format
+    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    // Format the current time to a string
+    String currentTimeString = dateFormat.format(currentDate);
 
     public int getType() {
         return type;
@@ -119,6 +125,10 @@ class Voting {
         this.voters = voters;
     }
 
+    /**
+     * putting keys of hash set of choices n an arraylist
+     * @return ArrayList
+     */
     public ArrayList<String> getChoices() {
         ArrayList<String> temp = new ArrayList<>();
         for (String i : choices.keySet()) {
@@ -127,25 +137,59 @@ class Voting {
         return temp;
     }
 
+    /**
+     * creating a choice
+     * @param choice is name of new choice for adding to hash map of choices
+     */
     public void createChoice(String choice) {
         HashSet<Vote> votes = new HashSet<>();
         choices.put(choice, votes);
     }
 
     public void vote(Person voter, ArrayList<String> voter_choices) {
-        String date = "2024/4/2";
+        //adding voter to the list of voters
         voters.add(voter);
-        Vote vote = new Vote(voter, date);
+        //creating new vote and initializing it
+        Vote vote = new Vote(voter,currentTimeString);
+        /**
+         * for any choices which voter has selected we add his vote to hash set of him
+         * not annonumous
+         */
         for (String i : voter_choices) {
             for (String j : choices.keySet()) {
                 if (i.equals(j)) {
                         choices.get(j).add(vote);
+                        break;
                 }
             }
-
-
+            break;
         }
+
+
+    }
+
+    /**
+     * anounymous voting
+     * we create a vote and initialize it then put key lst in array lst selecting
+     * one of them by random then adding that vote to votes set of that choice
+     * @param voter
+     */
+    public void vote(Person voter){
+        int num = choices.size();
+        Vote vote  = new Vote(voter,currentTimeString);
+        Random random = new Random();
+        int random_number = random.nextInt(num);
+        ArrayList<String> keyList = new ArrayList<>(choices.keySet());
+        String random_member = keyList.get(random_number);
+        choices.get(random_member).add(vote);
 
     }
 }
+
+
+
+
+
+
+
 
