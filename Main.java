@@ -230,6 +230,20 @@ class VotingSystem{
     public Voting getVoting(int index){
      return votingList.get(index);
     }
+    public void printResults(int index){
+        votingList.get(index).printResults();
+    }
+    public void printVoters(int index){
+        votingList.get(index).printVoters();
+    }
+    public void printVoting(int index){
+        int counter = 0;
+        System.out.println("Question : "+ votingList.get(index).getQuestion());
+        for (int i = 0; i < votingList.get(index).getChoices().size(); i++) {
+            System.out.println(counter + ")" + votingList.get(index).getChoices().get(i));
+            counter++;
+        }
+    }
 
 
 }
