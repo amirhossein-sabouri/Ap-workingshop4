@@ -184,6 +184,17 @@ class Voting {
         choices.get(random_member).add(vote);
 
     }
+    public void printVoters(){
+        if(isAnonymous == false){
+            for(int i = 0; i < voters.size();i++){
+                System.out.printf("Voter" + i+1+")"+" "+voters.get(i).getFirstname() + " "+ voters.get(i).getLastname());
+            }
+        }else{
+            return;
+        }
+
+    }
+
 }
 
 
