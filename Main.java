@@ -59,11 +59,11 @@ class Vote{
             return false;
         }
         VotingSystem that = (VotingSystem) o;
-        return Objects.equals(getVotingList(),that.getVotingList());
+        return Objects.equals(((VotingSystem) o).getVotingList(),that.getVotingList());
     }
-    @override
+    @Override
     public int hashCode(){
-     return Objects.hash(getVotingList());
+     return Objects.hash(getVoter());
 
     }
 }
@@ -227,7 +227,7 @@ class VotingSystem{
     public void createVoting(String question, boolean isAnonymous, int type, ArrayList<String> choices){
         Voting voting  = new Voting(type,question,isAnonymous);
     }
-    public Voting getVoting(int index){
+    public Voting getVotingList(int index){
      return votingList.get(index);
     }
     public void printResults(int index){
@@ -244,11 +244,48 @@ class VotingSystem{
             counter++;
         }
     }
+//    public void vote(int index, Person voter)
+//    {
+//
+//    }
+public void vote(Person voter, int index) {
+    Date currentDate = new Date();
+    // Create a date format
+    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
+    // Format the current time to a string
+    String currentTimeString = dateFormat.format(currentDate);
+    //creating new vote and initializing it
+    Vote vote = new Vote(voter,currentTimeString);
+    /**
+     * for any choices which voter has selected we add his vote to hash set of him
+     * not annonumous
+     */
+    //votter choices
+    for (String i : votingList.get(index).getChoices()) {
+        for (String j : votingList.get(index).getChoices()) {
+            if (i.equals(j)) {
+                votingList.get(index).getChoices();
+                break;
+            }
+        }
+        break;
+    }
+
+
+
+}
 
 }
 class Main{
     public static void main(String[] args) {
+        ArrayList<Voting>votingList = new ArrayList<>();
+        VotingSystem votingSystem = new VotingSystem(votingList);
+        Voting voting1 = new Voting(1,"Which country is best for living?",false);
+        Voting voting2 = new Voting(2,"Which party willwin th war?",true);
+        Person person1 = new Person("Amin","Rezaian");
+        Person person2 = new Person("Ahad","Samavst");
+
 
     }
 }
