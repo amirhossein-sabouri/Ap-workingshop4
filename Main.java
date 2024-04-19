@@ -74,12 +74,11 @@ class Voting {
     private boolean isAnonymous;
     private ArrayList<Person> voters;
 
-    public Voting(int type, String question, HashMap<String, HashSet<Vote>> choices, boolean isAnonymous, ArrayList<Person> voters) {
+    public Voting(int type, String question,  boolean isAnonymous) {
         this.type = type;
         this.question = question;
-        this.choices = choices;
         this.isAnonymous = isAnonymous;
-        this.voters = voters;
+
     }
     Date currentDate = new Date();
     // Create a date format
@@ -205,27 +204,38 @@ class Voting {
      */
     public void printResults(){
         int counter = 0;
-        for (Map.Entry<String,HashSet>entry : choices.entrySet()) {
-            number = entry.getValue().size();
+        for (String key : choices.keySet()){
             counter++;
-            System.out.println(counter + ")" + entry.getKey()+ " :"+ number);
+            System.out.println(counter + ")"+ key + " :" + choices.get(key));
         }
     }
+}
+
+
+class VotingSystem{
+    private ArrayList<Voting> votingList;
+
+    public VotingSystem(ArrayList<Voting> votingList) {
+        this.votingList = votingList;
+    }
+
+    public ArrayList<Voting> getVotingList(){
+        return votingList;
+    }
+
+
+    public void createVoting(String question, boolean isAnonymous, int type, ArrayList<String> choices){
+        Voting voting  = new Voting(type,question,isAnonymous);
+    }
+    public Voting getVoting(int index){
+     return votingList.get(index);
+    }
+
 
 }
-class VotingSystem{
-    ArrayList<Voting>voting_list = new ArrayList<>();
+class Main{
+    public static void main(String[] args) {
 
-    public VotingSystem(ArrayList<Voting> voting_list) {
-        this.voting_list = voting_list;
-    }
-
-    public ArrayList<Voting> getVoting_list() {
-        return voting_list;
-    }
-
-    public void setVoting_list(ArrayList<Voting> voting_list) {
-        this.voting_list = voting_list;
     }
 }
 
