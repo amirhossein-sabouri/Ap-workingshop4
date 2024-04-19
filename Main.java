@@ -184,6 +184,10 @@ class Voting {
         choices.get(random_member).add(vote);
 
     }
+
+    /**
+     * checking if voting is anonymous or not then printing all the voters name
+     */
     public void printVoters(){
         if(isAnonymous == false){
             for(int i = 0; i < voters.size();i++){
@@ -191,11 +195,25 @@ class Voting {
             }
         }else{
             return;
-        }
 
+        }
+    }
+    int number = 0;
+
+    /**
+     *showing the results of votting 
+     */
+    public void printResults(){
+        int counter = 0;
+        for (Map.Entry<String,HashSet>entry : choices.entrySet()) {
+            number = entry.getValue().size();
+            counter++;
+            System.out.println(counter + ")" + entry.getKey()+ " :"+ number);
+        }
     }
 
 }
+
 
 
 
