@@ -213,6 +213,21 @@ class Voting {
     }
 
 }
+class VotingSystem{
+    ArrayList<Voting>voting_list = new ArrayList<>();
+
+    public VotingSystem(ArrayList<Voting> voting_list) {
+        this.voting_list = voting_list;
+    }
+
+    public ArrayList<Voting> getVoting_list() {
+        return voting_list;
+    }
+
+    public void setVoting_list(ArrayList<Voting> voting_list) {
+        this.voting_list = voting_list;
+    }
+}
 
 
 
